@@ -2,13 +2,14 @@ from flight_search import FlightSearch
 from data_manager import DataManager
 from notification_manager import NotificationManager
 from user_manager import UserManager
+import os
 
-email_api = "https://api.sheety.co/9df8366ff8b44646c21a815dc791aacc/copyOfFlightDeals/users"
-flight_api = "https://tequila-api.kiwi.com/locations/query"
-flight_deal = "https://tequila-api.kiwi.com/v2/search"
-flight_key = "4NOXDq7RbWmtNWNz5G3mmUmyrnDOIJ0I"
-sheety_put = "https://api.sheety.co/9df8366ff8b44646c21a815dc791aacc/copyOfFlightDeals/prices/"
-sheety_get = "https://api.sheety.co/9df8366ff8b44646c21a815dc791aacc/copyOfFlightDeals/prices"
+email_api = os.getenv("EMAIL")
+flight_api = os.getenv("TEQUILA")
+flight_deal = os.getenv("DEAL")
+flight_key = os.getenv("FLIGHT_KEY")
+sheety_put = os.getenv("PUT")
+sheety_get = os.getenv("GET")
 
 
 users = UserManager(email_api)
