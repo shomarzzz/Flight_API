@@ -6,7 +6,8 @@ ahead = now + datetime.timedelta(days=60)
 ahead = ahead.strftime(r"%d/%m/%Y")
 print(nowe, ahead)
 class FlightSearch:
-    def __init__(self, get_url, search_url, key, data, country, stopover):
+    def __init__(self, get_url, search_url, key, data, country, stopover, currency):
+        self.curr = currency
         self.get = get_url
         self.dealer = search_url
         self.headers = {"apikey": key}
@@ -34,7 +35,7 @@ class FlightSearch:
                 "dateFrom": nowe,
                 "dateTo": ahead,
                 "limit": 50,
-                "curr": "BDT",
+                "curr": self.curr,
                 "max_stopovers": self.stopover
             }
             print(self.headers)
@@ -45,7 +46,6 @@ class FlightSearch:
             try:
                 data = response.json()["data"][0]
             except IndexError:
-                print("lol")
                 self.data[i]["lowestPrice"] = 9999
                 continue
             self.info.append({"fly_from":data["flyFrom"],
