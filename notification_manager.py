@@ -19,15 +19,14 @@ class NotificationManager:
 
         
                 
-    def send_mail(self):
+    def send_mail(self, send_mail, pass):
         msg = self.message_formatter()
         if msg != "Subject:low price\n\n":
-            print("hello")
             with smtplib.SMTP_SSL("smtp.gmail.com") as connection:
-                connection.login("emailfortestinginpython@gmail.com", "saminisnewongmail")
+                connection.login(send_mail, pass)
                 for email in self.mails:
                     try:
-                        connection.sendmail("emailfortestinginpython@gmail.com", email, msg)
+                        connection.sendmail(send_mail, email, msg)
                     except Exception:
                         pass
         return
